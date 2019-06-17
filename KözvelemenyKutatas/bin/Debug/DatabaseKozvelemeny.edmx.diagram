@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a8e420a6db3f4803ae4116931dc8423e" Name="Diagram1">
+        <EntityTypeShape EntityType="DatabaseKozvelemenyModel.FELHASZNALOIADATOK" Width="2.75" PointX="7.625" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseKozvelemenyModel.KERDESEK" Width="2.25" PointX="2.75" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseKozvelemenyModel.KUTATASOK" Width="1.5" PointX="0.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseKozvelemenyModel.LEADOTTVALASZOK" Width="2.25" PointX="5.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseKozvelemenyModel.VALASZOK" Width="1.5" PointX="3.25" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="DatabaseKozvelemenyModel.LEADOTTEMAIL_FOREIGN_KEY" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseKozvelemenyModel.KERDESID_FOREIGN_KEY" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseKozvelemenyModel.KUTATASNEV_FOREIGN_KEY" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseKozvelemenyModel.LEADOTTKERDESID_FORE1GN_KEY" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseKozvelemenyModel.LEADOTTVALASZ_FOREIGN_KEY" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

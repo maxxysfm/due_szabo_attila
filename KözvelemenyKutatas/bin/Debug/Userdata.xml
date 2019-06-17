@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<userdata>
+<user mode="false">
+<EMAIL>maxxywarrior2@gmail.com</EMAIL>
+<NEM>Férfi</NEM>
+<KOR>21</KOR>
+<VEGZETTSEG>Szakközépiskola</VEGZETTSEG>
+</user>
+</userdata>
+<!-- -
+Mode: true = Admin, false = Normál
+Csak egy user adatát veszi be
+<!- -->

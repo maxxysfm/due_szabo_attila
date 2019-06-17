@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseKozvelemenyModelStoreContainer" CdmEntityContainer="DatabaseKozvelemenyEntities">
+    <EntitySetMapping Name="FELHASZNALOIADATOKs">
+      <EntityTypeMapping TypeName="DatabaseKozvelemenyModel.FELHASZNALOIADATOK">
+        <MappingFragment StoreEntitySet="FELHASZNALOIADATOK">
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="NEM" ColumnName="NEM" />
+          <ScalarProperty Name="KOR" ColumnName="KOR" />
+          <ScalarProperty Name="VEGZETTSEG" ColumnName="VEGZETTSEG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KERDESEKs">
+      <EntityTypeMapping TypeName="DatabaseKozvelemenyModel.KERDESEK">
+        <MappingFragment StoreEntitySet="KERDESEK">
+          <ScalarProperty Name="KERDESID" ColumnName="KERDESID" />
+          <ScalarProperty Name="KUTATASNEV" ColumnName="KUTATASNEV" />
+          <ScalarProperty Name="LEIRAS" ColumnName="LEIRAS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KUTATASOKs">
+      <EntityTypeMapping TypeName="DatabaseKozvelemenyModel.KUTATASOK">
+        <MappingFragment StoreEntitySet="KUTATASOK">
+          <ScalarProperty Name="KUTATASNEV" ColumnName="KUTATASNEV" />
+          <ScalarProperty Name="KEZDODATE" ColumnName="KEZDODATE" />
+          <ScalarProperty Name="VEGZODATE" ColumnName="VEGZODATE" />
+          <ScalarProperty Name="FOLIMIT" ColumnName="FOLIMIT" />
+          <ScalarProperty Name="KUTATASLOCK" ColumnName="KUTATASLOCK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LEADOTTVALASZOKs">
+      <EntityTypeMapping TypeName="DatabaseKozvelemenyModel.LEADOTTVALASZOK">
+        <MappingFragment StoreEntitySet="LEADOTTVALASZOK">
+          <ScalarProperty Name="LEADOTTID" ColumnName="LEADOTTID" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="KERDESID" ColumnName="KERDESID" />
+          <ScalarProperty Name="VALASZID" ColumnName="VALASZID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VALASZOKs">
+      <EntityTypeMapping TypeName="DatabaseKozvelemenyModel.VALASZOK">
+        <MappingFragment StoreEntitySet="VALASZOK">
+          <ScalarProperty Name="KERDESID" ColumnName="KERDESID" />
+          <ScalarProperty Name="VALASZID" ColumnName="VALASZID" />
+          <ScalarProperty Name="LEIRAS" ColumnName="LEIRAS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KisGepKolcsonzoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Gep">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Nev" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="KolcsonzesAra" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kolcsonzes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="UgyfelId" Type="int" Nullable="false" />
+    <Property Name="GepId" Type="int" Nullable="false" />
+    <Property Name="NapokSzama" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ugyfel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Nev" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Cim" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Kedvezmeny" Type="int" />
+  </EntityType>
+  <Association Name="FK_Kolcsonzes_ToGep">
+    <End Role="Gep" Type="Self.Gep" Multiplicity="1" />
+    <End Role="Kolcsonzes" Type="Self.Kolcsonzes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gep">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kolcsonzes">
+        <PropertyRef Name="GepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kolcsonzes_ToUgyfel">
+    <End Role="Ugyfel" Type="Self.Ugyfel" Multiplicity="1" />
+    <End Role="Kolcsonzes" Type="Self.Kolcsonzes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ugyfel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kolcsonzes">
+        <PropertyRef Name="UgyfelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KisGepKolcsonzoModelStoreContainer">
+    <EntitySet Name="Gep" EntityType="Self.Gep" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kolcsonzes" EntityType="Self.Kolcsonzes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ugyfel" EntityType="Self.Ugyfel" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Kolcsonzes_ToGep" Association="Self.FK_Kolcsonzes_ToGep">
+      <End Role="Gep" EntitySet="Gep" />
+      <End Role="Kolcsonzes" EntitySet="Kolcsonzes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kolcsonzes_ToUgyfel" Association="Self.FK_Kolcsonzes_ToUgyfel">
+      <End Role="Ugyfel" EntitySet="Ugyfel" />
+      <End Role="Kolcsonzes" EntitySet="Kolcsonzes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

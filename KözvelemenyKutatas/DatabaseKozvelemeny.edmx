@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DatabaseKozvelemenyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FELHASZNALOIADATOK">
+          <Key>
+            <PropertyRef Name="EMAIL" />
+          </Key>
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NEM" Type="varchar" MaxLength="5" />
+          <Property Name="KOR" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="VEGZETTSEG" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KERDESEK">
+          <Key>
+            <PropertyRef Name="KERDESID" />
+          </Key>
+          <Property Name="KERDESID" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="KUTATASNEV" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LEIRAS" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="KUTATASOK">
+          <Key>
+            <PropertyRef Name="KUTATASNEV" />
+          </Key>
+          <Property Name="KUTATASNEV" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="KEZDODATE" Type="datetime" />
+          <Property Name="VEGZODATE" Type="datetime" />
+          <Property Name="FOLIMIT" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="KUTATASLOCK" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LEADOTTVALASZOK">
+          <Key>
+            <PropertyRef Name="LEADOTTID" />
+          </Key>
+          <Property Name="LEADOTTID" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="KERDESID" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="VALASZID" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VALASZOK">
+          <Key>
+            <PropertyRef Name="VALASZID" />
+          </Key>
+          <Property Name="KERDESID" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="VALASZID" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="LEIRAS" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="KERDESID_FOREIGN_KEY">
+          <End Role="KERDESEK" Type="Self.KERDESEK" Multiplicity="1" />
+          <End Role="VALASZOK" Type="Self.VALASZOK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KERDESEK">
+              <PropertyRef Name="KERDESID" />
+            </Principal>
+            <Dependent Role="VALASZOK">
+              <PropertyRef Name="KERDESID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="KUTATASNEV_FOREIGN_KEY">
+          <End Role="KUTATASOK" Type="Self.KUTATASOK" Multiplicity="1" />
+          <End Role="KERDESEK" Type="Self.KERDESEK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KUTATASOK">
+              <PropertyRef Name="KUTATASNEV" />
+            </Principal>
+            <Dependent Role="KERDESEK">
+              <PropertyRef Name="KUTATASNEV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LEADOTTEMAIL_FOREIGN_KEY">
+          <End Role="FELHASZNALOIADATOK" Type="Self.FELHASZNALOIADATOK" Multiplicity="1" />
+          <End Role="LEADOTTVALASZOK" Type="Self.LEADOTTVALASZOK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FELHASZNALOIADATOK">
+              <PropertyRef Name="EMAIL" />
+            </Principal>
+            <Dependent Role="LEADOTTVALASZOK">
+              <PropertyRef Name="EMAIL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LEADOTTKERDESID_FORE1GN_KEY">
+          <End Role="KERDESEK" Type="Self.KERDESEK" Multiplicity="1" />
+          <End Role="LEADOTTVALASZOK" Type="Self.LEADOTTVALASZOK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KERDESEK">
+              <PropertyRef Name="KERDESID" />
+            </Principal>
+            <Dependent Role="LEADOTTVALASZOK">
+              <PropertyRef Name="KERDESID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LEADOTTVALASZ_FOREIGN_KEY">
+          <End Role="VALASZOK" Type="Self.VALASZOK" Multiplicity="1" />
+          <End Role="LEADOTTVALASZOK" Type="Self.LEADOTTVALASZOK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VALASZOK">
+              <PropertyRef Name="VALASZID" />
+            </Principal>
+            <Dependent Role="LEADOTTVALASZOK">
+              <PropertyRef Name="VALASZID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseKozvelemenyModelStoreContainer">
+          <EntitySet Name="FELHASZNALOIADATOK" EntityType="Self.FELHASZNALOIADATOK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KERDESEK" EntityType="Self.KERDESEK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KUTATASOK" EntityType="Self.KUTATASOK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LEADOTTVALASZOK" EntityType="Self.LEADOTTVALASZOK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VALASZOK" EntityType="Self.VALASZOK" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="KERDESID_FOREIGN_KEY" Association="Self.KERDESID_FOREIGN_KEY">
+            <End Role="KERDESEK" EntitySet="KERDESEK" />
+            <End Role="VALASZOK" EntitySet="VALASZOK" />
+          </AssociationSet>
+          <AssociationSet Name="KUTATASNEV_FOREIGN_KEY" Association="Self.KUTATASNEV_FOREIGN_KEY">
+            <End Role="KUTATASOK" EntitySet="KUTATASOK" />
+            <End Role="KERDESEK" EntitySet="KERDESEK" />
+          </AssociationSet>
+          <AssociationSet Name="LEADOTTEMAIL_FOREIGN_KEY" Association="Self.LEADOTTEMAIL_FOREIGN_KEY">
+            <End Role="FELHASZNALOIADATOK" EntitySet="FELHASZNALOIADATOK" />
+            <End Role="LEADOTTVALASZOK" EntitySet="LEADOTTVALASZOK" />
+          </AssociationSet>
+          <AssociationSet Name="LEADOTTKERDESID_FORE1GN_KEY" Association="Self.LEADOTTKERDESID_FORE1GN_KEY">
+            <End Role="KERDESEK" EntitySet="KERDESEK" />
+            <End Role="LEADOTTVALASZOK" EntitySet="LEADOTTVALASZOK" />
+          </AssociationSet>
+          <AssociationSet Name="LEADOTTVALASZ_FOREIGN_KEY" Association="Self.LEADOTTVALASZ_FOREIGN_KEY">
+            <End Role="VALASZOK" EntitySet="VALASZOK" />
+            <End Role="LEADOTTVALASZOK" EntitySet="LEADOTTVALASZOK" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabaseKozvelemenyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FELHASZNALOIADATOK">
+          <Key>
+            <PropertyRef Name="EMAIL" />
+          </Key>
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NEM" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="KOR" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="VEGZETTSEG" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LEADOTTVALASZOKs" Relationship="Self.LEADOTTEMAIL_FOREIGN_KEY" FromRole="FELHASZNALOIADATOK" ToRole="LEADOTTVALASZOK" />
+        </EntityType>
+        <EntityType Name="KERDESEK">
+          <Key>
+            <PropertyRef Name="KERDESID" />
+          </Key>
+          <Property Name="KERDESID" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="KUTATASNEV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LEIRAS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VALASZOKs" Relationship="Self.KERDESID_FOREIGN_KEY" FromRole="KERDESEK" ToRole="VALASZOK" />
+          <NavigationProperty Name="KUTATASOK" Relationship="Self.KUTATASNEV_FOREIGN_KEY" FromRole="KERDESEK" ToRole="KUTATASOK" />
+          <NavigationProperty Name="LEADOTTVALASZOKs" Relationship="Self.LEADOTTKERDESID_FORE1GN_KEY" FromRole="KERDESEK" ToRole="LEADOTTVALASZOK" />
+        </EntityType>
+        <EntityType Name="KUTATASOK">
+          <Key>
+            <PropertyRef Name="KUTATASNEV" />
+          </Key>
+          <Property Name="KUTATASNEV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KEZDODATE" Type="DateTime" Precision="3" />
+          <Property Name="VEGZODATE" Type="DateTime" Precision="3" />
+          <Property Name="FOLIMIT" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="KUTATASLOCK" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="KERDESEKs" Relationship="Self.KUTATASNEV_FOREIGN_KEY" FromRole="KUTATASOK" ToRole="KERDESEK" />
+        </EntityType>
+        <EntityType Name="LEADOTTVALASZOK">
+          <Key>
+            <PropertyRef Name="LEADOTTID" />
+          </Key>
+          <Property Name="LEADOTTID" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KERDESID" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="VALASZID" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="FELHASZNALOIADATOK" Relationship="Self.LEADOTTEMAIL_FOREIGN_KEY" FromRole="LEADOTTVALASZOK" ToRole="FELHASZNALOIADATOK" />
+          <NavigationProperty Name="KERDESEK" Relationship="Self.LEADOTTKERDESID_FORE1GN_KEY" FromRole="LEADOTTVALASZOK" ToRole="KERDESEK" />
+          <NavigationProperty Name="VALASZOK" Relationship="Self.LEADOTTVALASZ_FOREIGN_KEY" FromRole="LEADOTTVALASZOK" ToRole="VALASZOK" />
+        </EntityType>
+        <EntityType Name="VALASZOK">
+          <Key>
+            <PropertyRef Name="VALASZID" />
+          </Key>
+          <Property Name="KERDESID" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="VALASZID" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="LEIRAS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="KERDESEK" Relationship="Self.KERDESID_FOREIGN_KEY" FromRole="VALASZOK" ToRole="KERDESEK" />
+          <NavigationProperty Name="LEADOTTVALASZOKs" Relationship="Self.LEADOTTVALASZ_FOREIGN_KEY" FromRole="VALASZOK" ToRole="LEADOTTVALASZOK" />
+        </EntityType>
+        <Association Name="LEADOTTEMAIL_FOREIGN_KEY">
+          <End Role="FELHASZNALOIADATOK" Type="Self.FELHASZNALOIADATOK" Multiplicity="1" />
+          <End Role="LEADOTTVALASZOK" Type="Self.LEADOTTVALASZOK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FELHASZNALOIADATOK">
+              <PropertyRef Name="EMAIL" />
+            </Principal>
+            <Dependent Role="LEADOTTVALASZOK">
+              <PropertyRef Name="EMAIL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="KERDESID_FOREIGN_KEY">
+          <End Role="KERDESEK" Type="Self.KERDESEK" Multiplicity="1" />
+          <End Role="VALASZOK" Type="Self.VALASZOK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KERDESEK">
+              <PropertyRef Name="KERDESID" />
+            </Principal>
+            <Dependent Role="VALASZOK">
+              <PropertyRef Name="KERDESID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="KUTATASNEV_FOREIGN_KEY">
+          <End Role="KUTATASOK" Type="Self.KUTATASOK" Multiplicity="1" />
+          <End Role="KERDESEK" Type="Self.KERDESEK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KUTATASOK">
+              <PropertyRef Name="KUTATASNEV" />
+            </Principal>
+            <Dependent Role="KERDESEK">
+              <PropertyRef Name="KUTATASNEV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LEADOTTKERDESID_FORE1GN_KEY">
+          <End Role="KERDESEK" Type="Self.KERDESEK" Multiplicity="1" />
+          <End Role="LEADOTTVALASZOK" Type="Self.LEADOTTVALASZOK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KERDESEK">
+              <PropertyRef Name="KERDESID" />
+            </Principal>
+            <Dependent Role="LEADOTTVALASZOK">
+              <PropertyRef Name="KERDESID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LEADOTTVALASZ_FOREIGN_KEY">
+          <End Role="VALASZOK" Type="Self.VALASZOK" Multiplicity="1" />
+          <End Role="LEADOTTVALASZOK" Type="Self.LEADOTTVALASZOK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VALASZOK">
+              <PropertyRef Name="VALASZID" />
+            </Principal>
+            <Dependent Role="LEADOTTVALASZOK">
+              <PropertyRef Name="VALASZID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseKozvelemenyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FELHASZNALOIADATOKs" EntityType="Self.FELHASZNALOIADATOK" />
+          <EntitySet Name="KERDESEKs" EntityType="Self.KERDESEK" />
+          <EntitySet Name="KUTATASOKs" EntityType="Self.KUTATASOK" />
+          <EntitySet Name="LEADOTTVALASZOKs" EntityType="Self.LEADOTTVALASZOK" />
+          <EntitySet Name="VALASZOKs" EntityType="Self.VALASZOK" />
+          <AssociationSet Name="LEADOTTEMAIL_FOREIGN_KEY" Association="Self.LEADOTTEMAIL_FOREIGN_KEY">
+            <End Role="FELHASZNALOIADATOK" EntitySet="FELHASZNALOIADATOKs" />
+            <End Role="LEADOTTVALASZOK" EntitySet="LEADOTTVALASZOKs" />
+          </AssociationSet>
+          <AssociationSet Name="KERDESID_FOREIGN_KEY" Association="Self.KERDESID_FOREIGN_KEY">
+            <End Role="KERDESEK" EntitySet="KERDESEKs" />
+            <End Role="VALASZOK" EntitySet="VALASZOKs" />
+          </AssociationSet>
+          <AssociationSet Name="KUTATASNEV_FOREIGN_KEY" Association="Self.KUTATASNEV_FOREIGN_KEY">
+            <End Role="KUTATASOK" EntitySet="KUTATASOKs" />
+            <End Role="KERDESEK" EntitySet="KERDESEKs" />
+          </AssociationSet>
+          <AssociationSet Name="LEADOTTKERDESID_FORE1GN_KEY" Association="Self.LEADOTTKERDESID_FORE1GN_KEY">
+            <End Role="KERDESEK" EntitySet="KERDESEKs" />
+            <End Role="LEADOTTVALASZOK" EntitySet="LEADOTTVALASZOKs" />
+          </AssociationSet>
+          <AssociationSet Name="LEADOTTVALASZ_FOREIGN_KEY" Association="Self.LEADOTTVALASZ_FOREIGN_KEY">
+            <End Role="VALASZOK" EntitySet="VALASZOKs" />
+            <End Role="LEADOTTVALASZOK" EntitySet="LEADOTTVALASZOKs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabaseKozvelemenyModelStoreContainer" CdmEntityContainer="DatabaseKozvelemenyEntities">
+          <EntitySetMapping Name="FELHASZNALOIADATOKs">
+            <EntityTypeMapping TypeName="DatabaseKozvelemenyModel.FELHASZNALOIADATOK">
+              <MappingFragment StoreEntitySet="FELHASZNALOIADATOK">
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="NEM" ColumnName="NEM" />
+                <ScalarProperty Name="KOR" ColumnName="KOR" />
+                <ScalarProperty Name="VEGZETTSEG" ColumnName="VEGZETTSEG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KERDESEKs">
+            <EntityTypeMapping TypeName="DatabaseKozvelemenyModel.KERDESEK">
+              <MappingFragment StoreEntitySet="KERDESEK">
+                <ScalarProperty Name="KERDESID" ColumnName="KERDESID" />
+                <ScalarProperty Name="KUTATASNEV" ColumnName="KUTATASNEV" />
+                <ScalarProperty Name="LEIRAS" ColumnName="LEIRAS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KUTATASOKs">
+            <EntityTypeMapping TypeName="DatabaseKozvelemenyModel.KUTATASOK">
+              <MappingFragment StoreEntitySet="KUTATASOK">
+                <ScalarProperty Name="KUTATASNEV" ColumnName="KUTATASNEV" />
+                <ScalarProperty Name="KEZDODATE" ColumnName="KEZDODATE" />
+                <ScalarProperty Name="VEGZODATE" ColumnName="VEGZODATE" />
+                <ScalarProperty Name="FOLIMIT" ColumnName="FOLIMIT" />
+                <ScalarProperty Name="KUTATASLOCK" ColumnName="KUTATASLOCK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LEADOTTVALASZOKs">
+            <EntityTypeMapping TypeName="DatabaseKozvelemenyModel.LEADOTTVALASZOK">
+              <MappingFragment StoreEntitySet="LEADOTTVALASZOK">
+                <ScalarProperty Name="LEADOTTID" ColumnName="LEADOTTID" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="KERDESID" ColumnName="KERDESID" />
+                <ScalarProperty Name="VALASZID" ColumnName="VALASZID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VALASZOKs">
+            <EntityTypeMapping TypeName="DatabaseKozvelemenyModel.VALASZOK">
+              <MappingFragment StoreEntitySet="VALASZOK">
+                <ScalarProperty Name="KERDESID" ColumnName="KERDESID" />
+                <ScalarProperty Name="VALASZID" ColumnName="VALASZID" />
+                <ScalarProperty Name="LEIRAS" ColumnName="LEIRAS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

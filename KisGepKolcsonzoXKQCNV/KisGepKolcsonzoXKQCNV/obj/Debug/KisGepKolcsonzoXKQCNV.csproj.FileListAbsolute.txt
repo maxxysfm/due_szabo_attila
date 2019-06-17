@@ -1,0 +1,14 @@
+D:\Munka\ZH_XKQCNV\KisGepKolcsonzoXKQCNV\KisGepKolcsonzoXKQCNV\bin\Debug\KisGepKolcsonzoXKQCNV.exe.config
+D:\Munka\ZH_XKQCNV\KisGepKolcsonzoXKQCNV\KisGepKolcsonzoXKQCNV\bin\Debug\KisGepKolcsonzo.mdf
+D:\Munka\ZH_XKQCNV\KisGepKolcsonzoXKQCNV\KisGepKolcsonzoXKQCNV\bin\Debug\KisGepKolcsonzo_log.ldf
+D:\Munka\ZH_XKQCNV\KisGepKolcsonzoXKQCNV\KisGepKolcsonzoXKQCNV\bin\Debug\KisGepKolcsonzoXKQCNV.exe
+D:\Munka\ZH_XKQCNV\KisGepKolcsonzoXKQCNV\KisGepKolcsonzoXKQCNV\bin\Debug\KisGepKolcsonzoXKQCNV.pdb
+D:\Munka\ZH_XKQCNV\KisGepKolcsonzoXKQCNV\KisGepKolcsonzoXKQCNV\bin\Debug\EntityFramework.dll
+D:\Munka\ZH_XKQCNV\KisGepKolcsonzoXKQCNV\KisGepKolcsonzoXKQCNV\bin\Debug\EntityFramework.xml
+D:\Munka\ZH_XKQCNV\KisGepKolcsonzoXKQCNV\KisGepKolcsonzoXKQCNV\obj\Debug\KisGepKolcsonzoXKQCNV.csprojResolveAssemblyReference.cache
+D:\Munka\ZH_XKQCNV\KisGepKolcsonzoXKQCNV\KisGepKolcsonzoXKQCNV\obj\Debug\KisGepKolcsonzoXKQCNV.FormMain.resources
+D:\Munka\ZH_XKQCNV\KisGepKolcsonzoXKQCNV\KisGepKolcsonzoXKQCNV\obj\Debug\KisGepKolcsonzoXKQCNV.Properties.Resources.resources
+D:\Munka\ZH_XKQCNV\KisGepKolcsonzoXKQCNV\KisGepKolcsonzoXKQCNV\obj\Debug\KisGepKolcsonzoXKQCNV.csproj.GenerateResource.Cache
+D:\Munka\ZH_XKQCNV\KisGepKolcsonzoXKQCNV\KisGepKolcsonzoXKQCNV\obj\Debug\KisGepKolcsonzoXKQCNV.exe
+D:\Munka\ZH_XKQCNV\KisGepKolcsonzoXKQCNV\KisGepKolcsonzoXKQCNV\obj\Debug\KisGepKolcsonzoXKQCNV.pdb
+D:\Munka\ZH_XKQCNV\KisGepKolcsonzoXKQCNV\KisGepKolcsonzoXKQCNV\obj\Debug\KisGepKolcsonzoXKQCNV.FormDiagram.resources

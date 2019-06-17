@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KisGepKolcsonzoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Gep">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Nev" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="KolcsonzesAra" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Kolcsonzes" Relationship="Self.FK_Kolcsonzes_ToGep" FromRole="Gep" ToRole="Kolcsonzes" />
+  </EntityType>
+  <EntityType Name="Kolcsonze">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="UgyfelId" Type="Int32" Nullable="false" />
+    <Property Name="GepId" Type="Int32" Nullable="false" />
+    <Property Name="NapokSzama" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Gep" Relationship="Self.FK_Kolcsonzes_ToGep" FromRole="Kolcsonzes" ToRole="Gep" />
+    <NavigationProperty Name="Ugyfel" Relationship="Self.FK_Kolcsonzes_ToUgyfel" FromRole="Kolcsonzes" ToRole="Ugyfel" />
+  </EntityType>
+  <EntityType Name="Ugyfel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Nev" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cim" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Kedvezmeny" Type="Int32" />
+    <NavigationProperty Name="Kolcsonzes" Relationship="Self.FK_Kolcsonzes_ToUgyfel" FromRole="Ugyfel" ToRole="Kolcsonzes" />
+  </EntityType>
+  <Association Name="FK_Kolcsonzes_ToGep">
+    <End Role="Gep" Type="Self.Gep" Multiplicity="1" />
+    <End Role="Kolcsonzes" Type="Self.Kolcsonze" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gep">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kolcsonzes">
+        <PropertyRef Name="GepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kolcsonzes_ToUgyfel">
+    <End Role="Ugyfel" Type="Self.Ugyfel" Multiplicity="1" />
+    <End Role="Kolcsonzes" Type="Self.Kolcsonze" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ugyfel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kolcsonzes">
+        <PropertyRef Name="UgyfelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KisGepKolcsonzoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Geps" EntityType="Self.Gep" />
+    <EntitySet Name="Kolcsonzes" EntityType="Self.Kolcsonze" />
+    <EntitySet Name="Ugyfels" EntityType="Self.Ugyfel" />
+    <AssociationSet Name="FK_Kolcsonzes_ToGep" Association="Self.FK_Kolcsonzes_ToGep">
+      <End Role="Gep" EntitySet="Geps" />
+      <End Role="Kolcsonzes" EntitySet="Kolcsonzes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kolcsonzes_ToUgyfel" Association="Self.FK_Kolcsonzes_ToUgyfel">
+      <End Role="Ugyfel" EntitySet="Ugyfels" />
+      <End Role="Kolcsonzes" EntitySet="Kolcsonzes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

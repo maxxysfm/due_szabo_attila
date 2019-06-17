@@ -1,0 +1,16 @@
+c:\users\attila\source\repos\Beadando\Beadando\bin\Debug\OWStatistics.mdf
+c:\users\attila\source\repos\Beadando\Beadando\bin\Debug\OWStatistics_log.ldf
+c:\users\attila\source\repos\Beadando\Beadando\bin\Debug\Beadando.exe.config
+c:\users\attila\source\repos\Beadando\Beadando\bin\Debug\Beadando.exe
+c:\users\attila\source\repos\Beadando\Beadando\bin\Debug\Beadando.pdb
+c:\users\attila\source\repos\Beadando\Beadando\bin\Debug\EntityFramework.dll
+c:\users\attila\source\repos\Beadando\Beadando\bin\Debug\EntityFramework.xml
+c:\users\attila\source\repos\Beadando\Beadando\obj\Debug\Beadando.csprojResolveAssemblyReference.cache
+c:\users\attila\source\repos\Beadando\Beadando\obj\Debug\Beadando.FormMain.resources
+c:\users\attila\source\repos\Beadando\Beadando\obj\Debug\Beadando.Properties.Resources.resources
+c:\users\attila\source\repos\Beadando\Beadando\obj\Debug\Beadando.csproj.GenerateResource.Cache
+c:\users\attila\source\repos\Beadando\Beadando\obj\Debug\Beadando.csproj.CoreCompileInputs.cache
+c:\users\attila\source\repos\Beadando\Beadando\obj\Debug\Beadando.exe
+c:\users\attila\source\repos\Beadando\Beadando\obj\Debug\Beadando.pdb
+c:\users\attila\source\repos\Beadando\Beadando\obj\Debug\Beadando.FormSkillRating.resources
+c:\users\attila\source\repos\Beadando\Beadando\obj\Debug\Beadando.FormChart.resources

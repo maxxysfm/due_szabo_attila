@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KisGepKolcsonzoModelStoreContainer" CdmEntityContainer="KisGepKolcsonzoEntities">
+    <EntitySetMapping Name="Geps">
+      <EntityTypeMapping TypeName="KisGepKolcsonzoModel.Gep">
+        <MappingFragment StoreEntitySet="Gep">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nev" ColumnName="Nev" />
+          <ScalarProperty Name="KolcsonzesAra" ColumnName="KolcsonzesAra" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kolcsonzes">
+      <EntityTypeMapping TypeName="KisGepKolcsonzoModel.Kolcsonze">
+        <MappingFragment StoreEntitySet="Kolcsonzes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UgyfelId" ColumnName="UgyfelId" />
+          <ScalarProperty Name="GepId" ColumnName="GepId" />
+          <ScalarProperty Name="NapokSzama" ColumnName="NapokSzama" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ugyfels">
+      <EntityTypeMapping TypeName="KisGepKolcsonzoModel.Ugyfel">
+        <MappingFragment StoreEntitySet="Ugyfel">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nev" ColumnName="Nev" />
+          <ScalarProperty Name="Cim" ColumnName="Cim" />
+          <ScalarProperty Name="Kedvezmeny" ColumnName="Kedvezmeny" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

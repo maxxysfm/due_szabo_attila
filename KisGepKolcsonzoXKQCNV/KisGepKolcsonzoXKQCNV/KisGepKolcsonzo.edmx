@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KisGepKolcsonzoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Gep">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nev" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="KolcsonzesAra" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kolcsonzes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="UgyfelId" Type="int" Nullable="false" />
+          <Property Name="GepId" Type="int" Nullable="false" />
+          <Property Name="NapokSzama" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ugyfel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nev" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cim" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Kedvezmeny" Type="int" />
+        </EntityType>
+        <Association Name="FK_Kolcsonzes_ToGep">
+          <End Role="Gep" Type="Self.Gep" Multiplicity="1" />
+          <End Role="Kolcsonzes" Type="Self.Kolcsonzes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gep">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kolcsonzes">
+              <PropertyRef Name="GepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kolcsonzes_ToUgyfel">
+          <End Role="Ugyfel" Type="Self.Ugyfel" Multiplicity="1" />
+          <End Role="Kolcsonzes" Type="Self.Kolcsonzes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ugyfel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kolcsonzes">
+              <PropertyRef Name="UgyfelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KisGepKolcsonzoModelStoreContainer">
+          <EntitySet Name="Gep" EntityType="Self.Gep" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kolcsonzes" EntityType="Self.Kolcsonzes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ugyfel" EntityType="Self.Ugyfel" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Kolcsonzes_ToGep" Association="Self.FK_Kolcsonzes_ToGep">
+            <End Role="Gep" EntitySet="Gep" />
+            <End Role="Kolcsonzes" EntitySet="Kolcsonzes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kolcsonzes_ToUgyfel" Association="Self.FK_Kolcsonzes_ToUgyfel">
+            <End Role="Ugyfel" EntitySet="Ugyfel" />
+            <End Role="Kolcsonzes" EntitySet="Kolcsonzes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KisGepKolcsonzoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Gep">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nev" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KolcsonzesAra" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kolcsonzes" Relationship="Self.FK_Kolcsonzes_ToGep" FromRole="Gep" ToRole="Kolcsonzes" />
+        </EntityType>
+        <EntityType Name="Kolcsonze">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UgyfelId" Type="Int32" Nullable="false" />
+          <Property Name="GepId" Type="Int32" Nullable="false" />
+          <Property Name="NapokSzama" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gep" Relationship="Self.FK_Kolcsonzes_ToGep" FromRole="Kolcsonzes" ToRole="Gep" />
+          <NavigationProperty Name="Ugyfel" Relationship="Self.FK_Kolcsonzes_ToUgyfel" FromRole="Kolcsonzes" ToRole="Ugyfel" />
+        </EntityType>
+        <EntityType Name="Ugyfel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nev" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cim" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Kedvezmeny" Type="Int32" />
+          <NavigationProperty Name="Kolcsonzes" Relationship="Self.FK_Kolcsonzes_ToUgyfel" FromRole="Ugyfel" ToRole="Kolcsonzes" />
+        </EntityType>
+        <Association Name="FK_Kolcsonzes_ToGep">
+          <End Role="Gep" Type="Self.Gep" Multiplicity="1" />
+          <End Role="Kolcsonzes" Type="Self.Kolcsonze" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gep">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kolcsonzes">
+              <PropertyRef Name="GepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kolcsonzes_ToUgyfel">
+          <End Role="Ugyfel" Type="Self.Ugyfel" Multiplicity="1" />
+          <End Role="Kolcsonzes" Type="Self.Kolcsonze" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ugyfel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kolcsonzes">
+              <PropertyRef Name="UgyfelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KisGepKolcsonzoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Geps" EntityType="Self.Gep" />
+          <EntitySet Name="Kolcsonzes" EntityType="Self.Kolcsonze" />
+          <EntitySet Name="Ugyfels" EntityType="Self.Ugyfel" />
+          <AssociationSet Name="FK_Kolcsonzes_ToGep" Association="Self.FK_Kolcsonzes_ToGep">
+            <End Role="Gep" EntitySet="Geps" />
+            <End Role="Kolcsonzes" EntitySet="Kolcsonzes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kolcsonzes_ToUgyfel" Association="Self.FK_Kolcsonzes_ToUgyfel">
+            <End Role="Ugyfel" EntitySet="Ugyfels" />
+            <End Role="Kolcsonzes" EntitySet="Kolcsonzes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KisGepKolcsonzoModelStoreContainer" CdmEntityContainer="KisGepKolcsonzoEntities">
+          <EntitySetMapping Name="Geps">
+            <EntityTypeMapping TypeName="KisGepKolcsonzoModel.Gep">
+              <MappingFragment StoreEntitySet="Gep">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nev" ColumnName="Nev" />
+                <ScalarProperty Name="KolcsonzesAra" ColumnName="KolcsonzesAra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kolcsonzes">
+            <EntityTypeMapping TypeName="KisGepKolcsonzoModel.Kolcsonze">
+              <MappingFragment StoreEntitySet="Kolcsonzes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UgyfelId" ColumnName="UgyfelId" />
+                <ScalarProperty Name="GepId" ColumnName="GepId" />
+                <ScalarProperty Name="NapokSzama" ColumnName="NapokSzama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ugyfels">
+            <EntityTypeMapping TypeName="KisGepKolcsonzoModel.Ugyfel">
+              <MappingFragment StoreEntitySet="Ugyfel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nev" ColumnName="Nev" />
+                <ScalarProperty Name="Cim" ColumnName="Cim" />
+                <ScalarProperty Name="Kedvezmeny" ColumnName="Kedvezmeny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
