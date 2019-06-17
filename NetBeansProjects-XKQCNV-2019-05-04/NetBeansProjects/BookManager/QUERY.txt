@@ -1,2 +1,0 @@
-INSERT INTO BOOKS (ISBN, AUTHOR, TITLE)
-	VALUES('AGK1254','Szabó Attila','Unity Game írás')
